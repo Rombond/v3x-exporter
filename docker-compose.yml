@@ -1,0 +1,15 @@
+services:
+  v3x-exporter:
+    container_name: v3x-exporter
+    image: ghcr.io/rombond/v3x-exporter:latest
+    ports:
+      - "${EXPORTER_PORT:-9090}:${EXPORTER_PORT:-9090}"
+    environment:
+      - V3X_USERNAME=${V3X_USERNAME:-}
+      - V3X_EMAIL=${V3X_EMAIL:-}
+      - V3X_PASSWORD=${V3X_PASSWORD:-}
+      - V3X_BASE_URL=${V3X_BASE_URL:-https://api.v3x.club}
+      - METRICS_PATH=${METRICS_PATH:-/metrics}
+      - PORT=${PORT:-9090}
+      - SCRAPE_INTERVAL=${SCRAPE_INTERVAL:-5m}
+    restart: unless-stopped
